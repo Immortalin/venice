@@ -10,7 +10,7 @@
     "build:worker": "if [ \"$VERCEL_ENV\" = production ]; then pnpm --dir ../../ worker:setup; else echo 'Skip non-production worker setup'; fi",
     "dev": "run-p --silent dev:*",
     "dev:css": "pnpm run generate:css --watch",
-    "dev:next": "next dev",
+    "dev:next": "next dev --hostname 127.0.0.1",
     "generate:css": "tailwindcss -i ./global.css -o ./__generated__/tailwind.css",
     "start": "next start"
   },
