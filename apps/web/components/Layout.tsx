@@ -28,7 +28,7 @@ export interface LayoutProps {
   children: React.ReactNode
 }
 
-export function Layout({title = 'Venice', links = [], children}: LayoutProps) {
+export function Layout({title = 'Beami', links = [], children}: LayoutProps) {
   const [developerMode, setDeveloperMode] = useAtom(developerModeAtom)
   const {adminSyncMeta, isAdmin, integrationsRes} = useVeniceAdmin({})
   // TODO: deduplicate me...

@@ -14,7 +14,7 @@ export default function LedgerPage() {
   return (
     <>
       <Head>
-        <title>Venice | {ledgerId}</title>
+        <title>Beami Connect | {ledgerId}</title>
       </Head>
 
       <Layout
