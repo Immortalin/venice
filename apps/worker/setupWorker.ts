@@ -30,9 +30,11 @@ export async function setupWorker(opts: {syncHttp?: boolean}) {
 
   if (opts.syncHttp) {
     await pool.query(sql`CREATE EXTENSION IF NOT EXISTS http;`)
+
+    // cron.schedule('runWorkerEveryMinute', '* * * * *', -- every minute
     await pool.query(sql`
       SELECT
-        cron.schedule('runWorkerEveryMinute', '* * * * *', -- every minute
+        cron.schedule('runWorkerEveryMinute', '0 0 * * *', -- every day at 0000
           $$
           SELECT status
           FROM http_post(${workerUrl},
@@ -44,9 +46,10 @@ export async function setupWorker(opts: {syncHttp?: boolean}) {
     `)
   } else {
     await pool.query(sql`CREATE EXTENSION IF NOT EXISTS pg_net;`)
+    // cron.schedule('runWorkerEveryMinute', '* * * * *', -- every minute
     await pool.query(sql`
       SELECT
-        cron.schedule('runWorkerEveryMinute', '* * * * *', -- every minute
+        cron.schedule('runWorkerEveryMinute', '0 0 * * *', -- every day at 0000
           $$
           SELECT * FROM net.http_post(
             url:=${workerUrl},
