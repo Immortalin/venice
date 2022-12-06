@@ -18,7 +18,8 @@ export async function runWorker(opts: {timeout?: number}) {
     noHandleSignals: false,
     pollInterval: 1000,
     // you can set the taskList or taskDirectory but not both
-    crontab: '* * * * * scheduleTasks ?fill=1m',
+    // sync once a day at 0000
+    crontab: '0 0 * * * scheduleTasks ?fill=1m',
     taskList: tasks,
     // We tend ot use pgBouncer on Supabase
     noPreparedStatements: true,
